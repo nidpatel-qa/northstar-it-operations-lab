@@ -90,3 +90,22 @@ else {
     Write-Host "Overall Status : Further network investigation required."
     Write-Host "Next Step      : Review connectivity and network configuration."
 }
+
+
+
+
+
+# Final diagnostic summary
+
+Write-Host ""
+Write-Host "========================================"
+Write-Host " Diagnostic Summary"
+Write-Host "========================================"
+
+Write-Host "Gateway Reachable : $GatewayReachable"
+Write-Host "Internet Reachable: $InternetReachable"
+Write-Host "DNS Resolution    : $DNSResolution"
+
+Write-Host ""
+Write-Host "Recommended Action:"
+Write-Host "Review application-level connectivity if network and DNS tests remain healthy."
