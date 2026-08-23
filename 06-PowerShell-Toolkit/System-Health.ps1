@@ -29,3 +29,15 @@ Write-Host ""
 Write-Host "Operating System : $WindowsVersion"
 Write-Host "OS Build         : $OSBuild"
 Write-Host "System Uptime    : $Uptime"
+
+
+
+# Simulated disk space information
+$Drive = "C:"
+$TotalSpaceGB = 475
+$FreeSpaceGB = 186
+
+Write-Host ""
+Write-Host "Drive            : $Drive"
+Write-Host "Total Space      : $TotalSpaceGB GB"
+Write-Host "Free Space       : $FreeSpaceGB GB"
