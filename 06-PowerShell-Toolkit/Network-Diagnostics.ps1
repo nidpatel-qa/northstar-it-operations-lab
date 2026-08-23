@@ -19,3 +19,26 @@ Write-Host "DNS Server      : $DNSServer"
 
 Write-Host ""
 Write-Host "Environment: Controlled Lab Simulation"
+
+
+
+
+# Simulated connectivity results
+$GatewayReachable = $true
+$InternetReachable = $true
+
+Write-Host ""
+Write-Host "Connectivity Tests"
+Write-Host "-------------------"
+
+if ($GatewayReachable) {
+    Write-Host "Default Gateway : Reachable"
+} else {
+    Write-Host "Default Gateway : Unreachable"
+}
+
+if ($InternetReachable) {
+    Write-Host "Internet        : Reachable"
+} else {
+    Write-Host "Internet        : Unreachable"
+}
