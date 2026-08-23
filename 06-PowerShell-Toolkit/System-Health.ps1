@@ -64,3 +64,33 @@ $CPUUsage = 38
 Write-Host ""
 Write-Host "Processor        : $CPU"
 Write-Host "CPU Usage        : $CPUUsage%"
+
+
+
+
+
+
+# Simulated health assessment
+
+Write-Host ""
+Write-Host "========================================"
+Write-Host " Health Assessment"
+Write-Host "========================================"
+
+if ($CPUUsage -lt 80) {
+    Write-Host "CPU Status      : Normal"
+} else {
+    Write-Host "CPU Status      : Review Required"
+}
+
+if ($FreeMemoryGB -gt 4) {
+    Write-Host "Memory Status   : Normal"
+} else {
+    Write-Host "Memory Status   : Review Required"
+}
+
+if ($FreeSpaceGB -gt 50) {
+    Write-Host "Disk Status     : Healthy"
+} else {
+    Write-Host "Disk Status     : Low Disk Space"
+}
