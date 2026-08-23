@@ -1,122 +1,158 @@
-# INC-1001 — Windows Performance Investigation
+# INC-1001 — Finance Application Intermittently Freezing
 
-**Status:** Investigating
-**Priority:** P3 — Medium
-**Category:** Endpoint / Windows
-**Affected User:** Finance Department
-**Affected Device:** Windows 11 laptop
-**Reported Through:** Service Desk
+**Incident Type:** Application / Endpoint  
+**Priority:** P3 — Medium  
+**Status:** Resolved  
+**Environment:** Northstar IT Operations Lab  
+**Lab Type:** Controlled simulation
 
-## User Report
+## 1. User Report
 
-A Finance employee reported that their Windows laptop had become noticeably slower than usual. Applications were taking longer to open, the system was slow when switching between applications, and the user experienced occasional periods where the computer appeared to stop responding.
+A Finance employee reported that the Northstar Finance application would intermittently freeze during normal use.
 
-The issue was reported as affecting one user.
+The user also reported occasional slowness in Outlook and Teams, although those applications remained usable.
 
-## Business Impact
+Restarting the Finance application temporarily restored functionality.
 
-The user could still access the computer and continue working, but reduced system performance was affecting normal productivity.
+## 2. Business Impact
 
-At the time of reporting:
+- One Finance user was affected.
+- The user could continue working after restarting the application.
+- No data loss was reported.
+- No department-wide outage was identified.
+- Finance application functionality was temporarily disrupted.
 
-* No wider department outage was identified.
-* The user could access required business applications.
-* The issue appeared isolated to one endpoint.
-* No data loss was reported.
+## 3. Initial Assessment
 
-## Initial Assessment
+The initial possibilities included:
 
-Based on the initial report, possible causes included:
-
-* High CPU or memory utilization
-* Limited available disk space
-* Excessive startup applications
-* Background processes or services
-* Pending Windows updates
-* Application-related resource consumption
-* Device hardware or storage performance issues
+- System resource exhaustion
+- Windows instability
+- Application failure
+- Application dependency failure
+- Network-related issue
+- User/application configuration issue
 
 No root cause was assumed before investigation.
 
-## Investigation Plan
+## 4. Investigation
 
-The investigation will follow a structured endpoint troubleshooting process:
+### Step 1 — Determine Scope
 
-1. Confirm the symptoms and frequency.
-2. Review current system resource utilization.
-3. Check available disk space.
-4. Review startup applications.
-5. Identify applications or processes consuming excessive resources.
-6. Review recent system or application changes.
-7. Check Windows system health indicators.
-8. Apply the least disruptive corrective action.
-9. Validate system performance after remediation.
-10. Document the root cause and any recommended preventive action.
+The issue was isolated to one user and one endpoint.
 
-## Evidence
+This reduced the likelihood of a widespread infrastructure outage.
 
-Evidence will be collected during the lab investigation and recorded below.
+### Step 2 — Review System Resources
 
-### Evidence 1 — System Resource Utilization
+Controlled lab observations:
 
-**Status:** Pending
+| Resource | Observation |
+|---|---:|
+| CPU | 18% |
+| Memory | 61% |
+| Disk utilization | 12% |
+| Network utilization | 4% |
+| Available disk space | 146 GB |
 
-CPU, memory, disk, and other relevant resource information will be reviewed during troubleshooting.
+The system was not showing evidence of severe resource exhaustion.
 
-### Evidence 2 — Disk Capacity
+### Step 3 — Reproduce the Application Issue
 
-**Status:** Pending
+The Finance application:
 
-Available storage will be reviewed to determine whether insufficient disk space could be contributing to the performance issue.
+- Opened normally.
+- Became unresponsive after approximately 5–10 minutes.
+- Returned to normal temporarily after being restarted.
 
-### Evidence 3 — Startup Applications
+Outlook, Teams, and other Windows applications continued operating normally.
 
-**Status:** Pending
+This increased the likelihood of an application-specific problem.
 
-Startup applications will be reviewed for unnecessary or resource-intensive programs.
+### Step 4 — Review Windows Application Events
 
-### Evidence 4 — System Health
+The Application log contained an Application Hang event:
 
-**Status:** Pending
+**Event ID:** 1002  
+**Application:** `NorthstarFinance.exe`
 
-Relevant Windows health indicators and system events will be reviewed for signs of recurring errors or system instability.
+The event confirmed that Windows detected the Finance application becoming unresponsive.
 
-## Resolution
+This confirmed the symptom but did not yet establish the root cause.
 
-**Status:** Pending investigation.
+### Step 5 — Investigate Application Dependencies
 
-No corrective action will be documented until sufficient evidence has been gathered to support the diagnosis.
+The Finance application depends on the:
 
-## Validation
+**Northstar Finance Service**
 
-After remediation, the following will be validated:
+During the investigation, the service was found to be stopped.
 
-* Application launch time
-* System responsiveness
-* CPU and memory utilization
-* User ability to perform normal work
-* Whether the reported symptoms have returned
+The service was configured for automatic startup but had terminated unexpectedly.
 
-## Root Cause
+### Step 6 — Investigate the Service Failure
 
-**Status:** Pending investigation.
+Service-related evidence indicated that the Finance Service could not start because a required configuration value was invalid.
 
-The root cause will only be recorded after the available evidence supports a specific diagnosis.
+The affected configuration was:
 
-## Preventive Action
+| Configuration | Current | Approved |
+|---|---|---|
+| DatabaseEndpoint | `finance-db-old` | `finance-db01` |
 
-Preventive recommendations will be determined after the investigation is completed.
+The service was attempting to use an outdated database endpoint.
 
-Potential actions may include:
+### Step 7 — Verify Before Changing Configuration
 
-* Removing unnecessary startup applications
-* Freeing storage space
-* Updating affected software
-* Reviewing recurring resource consumption
-* Updating endpoint maintenance procedures
-* Monitoring recurring performance issues
+The analyst did not immediately modify the configuration.
 
-## Analyst Notes
+The expected database endpoint was confirmed with the application owner:
 
-This incident demonstrates a structured approach to endpoint troubleshooting. The objective is to identify the actual cause rather than applying an unsupported fix based solely on the user's initial symptoms.
+`finance-db01`
 
+The approved configuration was then compared with the affected endpoint, confirming the configuration mismatch.
+
+## 5. Root Cause
+
+The Northstar Finance Service contained an outdated database endpoint.
+
+Because the Finance application depended on this service, the service could not start correctly and the application subsequently became unresponsive.
+
+## 6. Resolution
+
+The following corrective actions were performed within the controlled lab scenario:
+
+1. Confirmed the approved database endpoint.
+2. Updated the service configuration to the approved endpoint.
+3. Started the Northstar Finance Service.
+4. Confirmed that the service remained running.
+5. Relaunched the Finance application.
+6. Repeated the workflow that previously caused the application to freeze.
+
+## 7. Validation
+
+The application remained responsive after the corrective action.
+
+The original freezing behavior could no longer be reproduced in the controlled scenario.
+
+The incident was therefore considered resolved.
+
+## 8. Preventive Actions
+
+Recommended preventive actions:
+
+- Maintain an approved configuration record for critical application dependencies.
+- Include configuration validation in application deployment/change procedures.
+- Document service dependencies for business-critical applications.
+- Monitor critical service startup failures.
+- Require appropriate approval before production configuration changes.
+
+## 9. Analyst Takeaway
+
+The investigation demonstrated the importance of troubleshooting from evidence rather than immediately reinstalling an application or replacing hardware.
+
+The investigation progressed from:
+
+**User symptom → Scope → System resources → Application behavior → Event evidence → Service dependency → Configuration verification → Root cause → Resolution → Validation**
+
+This approach reduces unnecessary changes and helps ensure that the actual cause of an incident is addressed.
