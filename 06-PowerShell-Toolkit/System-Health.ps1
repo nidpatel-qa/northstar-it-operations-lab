@@ -17,3 +17,15 @@ Write-Host "Current User  : $CurrentUser"
 
 Write-Host ""
 Write-Host "Environment: Controlled Lab Simulation"
+
+
+
+# Simulated operating system information
+$WindowsVersion = "Windows 11 Pro"
+$OSBuild = "26100"
+$Uptime = "3 days, 7 hours"
+
+Write-Host ""
+Write-Host "Operating System : $WindowsVersion"
+Write-Host "OS Build         : $OSBuild"
+Write-Host "System Uptime    : $Uptime"
