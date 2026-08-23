@@ -53,3 +53,14 @@ Write-Host ""
 Write-Host "Total Memory     : $TotalMemoryGB GB"
 Write-Host "Used Memory      : $UsedMemoryGB GB"
 Write-Host "Free Memory      : $FreeMemoryGB GB"
+
+
+
+
+# Simulated CPU information
+$CPU = "Intel Core i5"
+$CPUUsage = 38
+
+Write-Host ""
+Write-Host "Processor        : $CPU"
+Write-Host "CPU Usage        : $CPUUsage%"
