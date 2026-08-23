@@ -2,17 +2,17 @@
 
 ## Overview
 
-The PowerShell Support Toolkit is a small IT support automation lab created to demonstrate how PowerShell can be used to collect endpoint information and assist with basic troubleshooting.
+The PowerShell Support Toolkit is a controlled IT operations lab demonstrating how PowerShell can support endpoint health assessment and network troubleshooting.
 
-The toolkit is designed around common IT service desk scenarios such as system performance, storage, memory, and CPU-related issues.
+The toolkit focuses on common service desk scenarios involving system performance, storage, memory, CPU utilization, network connectivity, and DNS resolution.
 
-## System Health Script
+All endpoint values and diagnostic results in this project are fictional and used for controlled lab simulation.
 
-### `System-Health.ps1`
+## Tools
 
-The System Health script demonstrates a basic endpoint health assessment.
+### System-Health.ps1
 
-It reviews:
+Demonstrates a basic endpoint health assessment covering:
 
 - Computer name
 - Current user
@@ -23,17 +23,39 @@ It reviews:
 - Memory usage
 - CPU usage
 
-The script also applies simple thresholds to identify whether CPU, memory, and disk conditions appear normal or may require further investigation.
+The script applies basic thresholds to classify endpoint conditions as normal or requiring further investigation.
 
-## Example Lab Environment
+### Network-Diagnostics.ps1
 
-This project uses fictional endpoint information.
+Demonstrates a structured network troubleshooting workflow covering:
 
-Example:
+- IP address
+- Default gateway
+- DNS server
+- Gateway connectivity
+- Internet connectivity
+- DNS resolution
+- Diagnostic decision logic
+- Recommended troubleshooting actions
+
+The script uses conditional logic to help distinguish between local connectivity, Internet connectivity, DNS, and application-level issues.
+
+## Example Diagnostic Workflow
 
 ```text
-Computer Name : Northstar-PC
-Current User  : TestUser
-Operating System : Windows 11 Pro
-OS Build : 26100
-System Uptime : 3 days, 7 hours
+User reports connectivity problem
+            |
+            v
+Check gateway connectivity
+            |
+            v
+Check Internet connectivity
+            |
+            v
+Check DNS resolution
+            |
+            v
+Interpret results
+            |
+            v
+Recommend next troubleshooting step
