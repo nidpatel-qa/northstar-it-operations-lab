@@ -41,3 +41,15 @@ Write-Host ""
 Write-Host "Drive            : $Drive"
 Write-Host "Total Space      : $TotalSpaceGB GB"
 Write-Host "Free Space       : $FreeSpaceGB GB"
+
+
+
+# Simulated memory information
+$TotalMemoryGB = 16
+$UsedMemoryGB = 9.4
+$FreeMemoryGB = 6.6
+
+Write-Host ""
+Write-Host "Total Memory     : $TotalMemoryGB GB"
+Write-Host "Used Memory      : $UsedMemoryGB GB"
+Write-Host "Free Memory      : $FreeMemoryGB GB"
