@@ -62,3 +62,31 @@ if ($DNSResolution) {
     Write-Host "DNS Query      : Failed"
     Write-Host "Test Domain    : $TestDomain"
 }
+
+
+
+
+
+# Diagnostic interpretation
+
+Write-Host ""
+Write-Host "========================================"
+Write-Host " Diagnostic Assessment"
+Write-Host "========================================"
+
+if ($GatewayReachable -and $InternetReachable -and $DNSResolution) {
+    Write-Host "Overall Status : Network and DNS appear healthy."
+    Write-Host "Next Step      : Investigate application or endpoint-specific issues."
+}
+elseif ($GatewayReachable -and $InternetReachable -and -not $DNSResolution) {
+    Write-Host "Overall Status : Possible DNS resolution issue."
+    Write-Host "Next Step      : Investigate DNS configuration or DNS server availability."
+}
+elseif (-not $GatewayReachable) {
+    Write-Host "Overall Status : Local network connectivity issue suspected."
+    Write-Host "Next Step      : Investigate adapter, Wi-Fi/Ethernet, DHCP, or network access."
+}
+else {
+    Write-Host "Overall Status : Further network investigation required."
+    Write-Host "Next Step      : Review connectivity and network configuration."
+}
