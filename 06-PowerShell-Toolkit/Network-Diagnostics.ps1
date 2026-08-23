@@ -42,3 +42,23 @@ if ($InternetReachable) {
 } else {
     Write-Host "Internet        : Unreachable"
 }
+
+
+
+
+
+# Simulated DNS resolution result
+$DNSResolution = $true
+$TestDomain = "intranet.northstar.local"
+
+Write-Host ""
+Write-Host "DNS Resolution"
+Write-Host "--------------"
+
+if ($DNSResolution) {
+    Write-Host "DNS Query      : Successful"
+    Write-Host "Test Domain    : $TestDomain"
+} else {
+    Write-Host "DNS Query      : Failed"
+    Write-Host "Test Domain    : $TestDomain"
+}
