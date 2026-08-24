@@ -186,3 +186,49 @@ The event should be escalated if future activity includes:
 **Risk Level:** Low
 
 **Closure Reason:** Authentication activity was confirmed by the account owner and no evidence of unauthorized access was identified.
+
+
+
+
+
+## 7. Analyst Summary
+
+### Investigation Overview
+
+A security alert was generated after multiple failed authentication attempts were followed by a successful login for the fictional account `TestUser`.
+
+The activity was reviewed using simulated authentication evidence, source network information, MFA status, and user validation.
+
+### Key Findings
+
+- Three failed authentication attempts occurred before a successful login.
+- The activity originated from the expected fictional internal network.
+- MFA was successfully completed.
+- The account owner confirmed the authentication activity.
+- No additional suspicious activity was identified.
+- No evidence of unauthorized access was established.
+
+### Final Assessment
+
+**Classification:** Benign / User-Confirmed Activity
+
+**Risk:** Low
+
+**Disposition:** Closed
+
+### Analyst Takeaway
+
+Authentication alerts should be investigated using multiple sources of evidence rather than being treated as confirmed security incidents immediately.
+
+User validation, authentication context, MFA results, source information, and follow-up activity should all be considered when determining whether an event requires escalation or containment.
+
+### Skills Demonstrated
+
+- Security alert triage
+- Authentication investigation
+- Evidence analysis
+- Risk assessment
+- User validation
+- Incident classification
+- Incident response decision-making
+- Security documentation
