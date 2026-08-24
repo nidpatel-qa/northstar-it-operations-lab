@@ -95,3 +95,55 @@ The successful MFA challenge reduces the likelihood of an unauthorized login but
 At this stage, the event should remain classified as **suspicious authentication activity** rather than a confirmed security incident.
 
 Additional validation with the account owner and review of post-authentication activity are required before determining whether escalation or containment is necessary.
+
+
+
+
+
+## 4. User Validation
+
+The fictional account owner was contacted to determine whether the authentication activity was recognized.
+
+### Simulated User Confirmation
+
+The account owner confirmed:
+
+- The login attempt occurred during their normal working hours.
+- They were working from the Northstar corporate network.
+- They recognized the three failed attempts as incorrect password entries.
+- They completed the MFA challenge themselves.
+- They did not observe unexpected account activity afterward.
+
+### Validation Result
+
+The authentication activity is consistent with legitimate user behavior.
+
+The failed attempts appear to have resulted from incorrect password entries rather than an apparent credential attack.
+
+## 5. Risk Assessment
+
+Based on the available evidence:
+
+**Likelihood of compromise:** Low
+
+**Business impact:** Low
+
+**Overall Risk:** Low
+
+### Reasoning
+
+The following factors reduce the risk assessment:
+
+- Authentication originated from the expected internal network.
+- The account owner confirmed the activity.
+- MFA was successfully completed.
+- No additional suspicious activity was identified.
+- No evidence of unauthorized account access was established.
+
+### Recommended Action
+
+No immediate account containment is required.
+
+The event should be documented and closed as **Benign / User-Confirmed Authentication Activity**.
+
+If similar authentication patterns occur repeatedly or originate from unexpected locations, the activity should be re-investigated and potentially escalated.
