@@ -48,3 +48,50 @@ The repeated failed authentication attempts followed by a successful login requi
 5. Did any suspicious activity occur after the successful login?
 
 The investigation will continue by validating the authentication activity and determining whether the event represents a legitimate user action or a potential account compromise.
+
+
+
+
+
+
+## 3. Evidence Analysis
+
+The authentication events were reviewed to determine whether the activity was consistent with normal user behavior or potential unauthorized access.
+
+### Source IP Analysis
+
+The successful and failed authentication attempts originated from the same fictional internal IP address:
+
+**Source IP:** `10.20.15.44`
+
+The IP address is within the fictional Northstar corporate network range.
+
+### Authentication Pattern
+
+The sequence shows:
+
+- Three consecutive failed authentication attempts
+- A successful authentication immediately afterward
+- MFA successfully completed on the successful login
+
+### Initial Interpretation
+
+The authentication pattern is suspicious enough to investigate, but the available evidence does **not** confirm account compromise.
+
+The successful MFA challenge reduces the likelihood of an unauthorized login but does not completely eliminate the possibility of compromised credentials or an approved authentication attempt.
+
+### Evidence Classification
+
+| Evidence | Assessment |
+|---|---|
+| Multiple failed logins | Requires investigation |
+| Successful login | Confirmed |
+| MFA completed | Positive security control |
+| Internal source IP | Lower immediate risk |
+| Confirmed malicious activity | Not established |
+
+### Investigation Conclusion
+
+At this stage, the event should remain classified as **suspicious authentication activity** rather than a confirmed security incident.
+
+Additional validation with the account owner and review of post-authentication activity are required before determining whether escalation or containment is necessary.
